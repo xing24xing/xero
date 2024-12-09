@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 import clsx from "clsx";
 import { useState } from "react";
-import { SlideDown } from "react-slidedown";
-import "react-slidedown/lib/slidedown.css";
+import Collapsible from "react-collapsible";
 
 const FaqItem = ({ item, index }) => {
   const [activeId, setActiveId] = useState(null);
@@ -16,7 +15,6 @@ const FaqItem = ({ item, index }) => {
         onClick={() => {
           setActiveId(activeId === item.id ? null : item.id);
         }}
-        
       >
         <div className="flex-1">
           <div className="small-compact mb-1.5 text-p3 max-lg:hidden">
@@ -43,11 +41,9 @@ const FaqItem = ({ item, index }) => {
         </div>
       </div>
 
-      <SlideDown>
-        {activeId === item.id && (
-          <div className="body-3 px-7 py-3.5">{item.answer}</div>
-        )}
-      </SlideDown>
+      <Collapsible open={active}>
+        <div className="body-3 px-7 py-3.5">{item.answer}</div>
+      </Collapsible>
 
       <div
         className={clsx(
@@ -61,4 +57,5 @@ const FaqItem = ({ item, index }) => {
     </div>
   );
 };
+
 export default FaqItem;
